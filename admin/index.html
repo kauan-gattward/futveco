@@ -1,0 +1,54 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0b">
+<title>Área do professor — FUT.VECO</title>
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<script src="data.js" defer></script><script src="app.js" defer></script>
+</head><body>
+<noscript><p class="nojs">Esta área precisa de JavaScript ativado.</p></noscript>
+<!-- LOGIN -->
+<section id="login" class="login" hidden>
+ <div class="login-bg" aria-hidden="true"><div class="sun"></div><div class="ball"></div></div>
+ <form class="login-card" id="loginForm" novalidate>
+  <a href="../" class="back">← voltar ao site</a>
+  <img src="../img/profile.jpg" width="72" height="72" alt="" class="logo">
+  <h1>Área do professor</h1>
+  <p class="muted">FUT.VECO | Esportes de Areia</p>
+  <div class="demo-note" role="note"><b>Modo demonstração</b> — usuário: <code>demo@futveco.com</code> / senha: <code>futveco</code><br><small>Não é segurança real: os dados ficam só neste navegador.</small></div>
+  <label>E-mail<input type="email" name="email" autocomplete="username" required></label>
+  <label>Senha<input type="password" name="senha" autocomplete="current-password" required></label>
+  <p class="err" id="loginErr" role="alert"></p>
+  <button class="btn" type="submit">Entrar</button>
+  <button class="link" type="button" id="fillDemo">Preencher dados de demonstração</button>
+ </form>
+</section>
+<!-- APP -->
+<div id="app" class="app" hidden>
+ <header class="top">
+  <button class="icon burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="side"><span></span><span></span><span></span></button>
+  <div class="tbrand"><img src="../img/profile.jpg" width="32" height="32" alt="">FUT.VECO <small>admin</small></div>
+  <span class="pill demo">dados de exemplo</span>
+ </header>
+ <aside class="side" id="side" aria-label="Navegação">
+  <div class="sbrand"><img src="../img/profile.jpg" width="40" height="40" alt=""><div><b>FUT.VECO</b><small>Área do professor</small></div></div>
+  <nav id="nav"></nav>
+  <div class="sfoot">
+   <button class="sbtn" id="btnExport" type="button">⬇ Exportar backup</button>
+   <label class="sbtn file">⬆ Importar backup<input type="file" id="fileImport" accept="application/json,.json"></label>
+   <button class="sbtn" id="btnReset" type="button">↺ Restaurar dados de exemplo</button>
+   <button class="sbtn" id="btnLogout" type="button">⎋ Sair</button>
+   <a class="sbtn" href="../">← Site público</a>
+  </div>
+ </aside>
+ <div class="scrim" id="scrim" hidden></div>
+ <main id="main" class="main" tabindex="-1"></main>
+</div>
+<dialog id="dlg" class="dlg" aria-labelledby="dlgTitle"><form method="dialog" id="dlgForm" novalidate><header><h2 id="dlgTitle"></h2><button class="icon x" value="cancel" formnovalidate aria-label="Fechar">×</button></header><div class="dlg-body" id="dlgBody"></div><footer id="dlgFoot"></footer></form></dialog>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+</body></html>

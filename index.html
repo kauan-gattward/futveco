@@ -19,13 +19,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <noscript><link rel="stylesheet" href="noscript.css"></noscript>
+<script src="admin/data.js" defer></script>
 <script src="script.js" defer></script></head><body>
 <a class="skip" href="#sobre">Pular para o conteúdo</a>
 <div id="loader" aria-hidden="true"><div class="lball"></div><div class="lname">FUT.VECO</div><div class="lbar"><i></i></div></div>
 <div class="cursor" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
 <header class="nav"><a href="#topo" class="brand"><img src="img/profile.jpg" width="150" height="150" alt="">FUT.VECO</a>
 <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
-<nav class="menu" id="menu" aria-label="Menu principal"><a href="#sobre">Sobre</a><a href="#modalidades">Modalidades</a><a href="#treinadores">Treinadores</a><a href="#eventos">Eventos</a><a href="#galeria">Galeria</a><a href="#aula" class="btn sm magnetic">Aula experimental</a></nav></header>
+<nav class="menu" id="menu" aria-label="Menu principal"><a href="#sobre">Sobre</a><a href="#modalidades">Modalidades</a><a href="#treinadores">Treinadores</a><a href="#eventos">Eventos</a><a href="#galeria">Galeria</a><a href="admin/" class="prof-link">Área do professor</a><a href="#aula" class="btn sm magnetic">Aula experimental</a></nav></header>
 <main>
 <section id="topo" class="hero">
  <div class="hero-bg" data-parallax="0.3"><img src="img/18.jpg" width="1600" height="2133" fetchpriority="high" decoding="async" alt="Alunos da FUT.VECO reunidos na areia em Itacaré"></div>
@@ -34,7 +35,7 @@
   <p class="kicker reveal">📍 Itacaré - BA · Esportes de Areia</p>
   <h1 class="kinetic" aria-label="FUT.VECO"><span aria-hidden="true">FUT</span><span class="dot" aria-hidden="true">.</span><span aria-hidden="true">VECO</span></h1>
   <p class="tag"><b>aprenda</b> • <b>evolua</b> • <b>divirta-se</b></p>
-  <div class="ctas"><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn magnetic">Agende sua aula experimental</a><a href="https://www.instagram.com/fut.veco/" target="_blank" rel="noopener noreferrer" class="btn ghost magnetic">@fut.veco</a></div>
+  <div class="ctas"><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn magnetic" data-exp>Agende sua aula experimental</a><a href="https://www.instagram.com/fut.veco/" target="_blank" rel="noopener noreferrer" class="btn ghost magnetic">@fut.veco</a></div>
  </div>
  <div class="ball float" aria-hidden="true"></div>
  <a href="#sobre" class="scroll-hint" aria-label="Rolar para a seção Sobre">role ↓</a>
@@ -89,11 +90,26 @@
 <section id="aula" class="sec cta"><div class="sun s2"></div><div class="wrap center">
  <h2 class="reveal big">Agende sua<br><em>aula experimental</em></h2>
  <p class="reveal">Treino para todos os níveis. Chama no direct e venha jogar com a gente em Itacaré!</p>
- <div class="ctas reveal"><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn magnetic">Mandar mensagem no Instagram</a><a href="https://www.instagram.com/fut.veco/" target="_blank" rel="noopener noreferrer" class="btn ghost dk magnetic">Ver horários e local</a></div>
+ <div class="ctas reveal"><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn magnetic" data-exp>Agendar aula experimental</a><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn ghost dk magnetic">Mandar mensagem no Instagram</a><a href="https://www.instagram.com/fut.veco/" target="_blank" rel="noopener noreferrer" class="btn ghost dk magnetic">Ver horários e local</a></div>
 </div></section>
 </main>
 <footer class="foot"><div class="wrap"><div class="brand"><img src="img/profile.jpg" width="150" height="150" alt="">FUT.VECO | Esportes de Areia</div>
 <p>aprenda • evolua • divirta-se · 📍 Itacaré - BA</p><p><a href="https://www.instagram.com/fut.veco/" target="_blank" rel="noopener noreferrer">Instagram @fut.veco</a></p>
-<small>Fotos: Instagram @fut.veco (uso demonstrativo).</small></div></footer>
+<small>Fotos: Instagram @fut.veco (uso demonstrativo).</small><p class="foot-admin"><a href="admin/">Entrar · Área do professor</a></p></div></footer>
+<dialog class="exp-dlg" id="expDlg" aria-labelledby="expTitle">
+ <form id="expForm" method="dialog" novalidate>
+  <button class="exp-x" value="cancel" formnovalidate aria-label="Fechar">×</button>
+  <h2 id="expTitle">Aula experimental</h2>
+  <p class="exp-demo" role="note"><b>Demonstração:</b> o pedido fica salvo só neste navegador (área do professor de exemplo). Para garantir sua vaga, chame também no Instagram.</p>
+  <label>Seu nome *<input name="nome" required maxlength="80" autocomplete="name"></label>
+  <label>WhatsApp *<input name="telefone" type="tel" inputmode="tel" required maxlength="20" autocomplete="tel" placeholder="(73) 9...."></label>
+  <div class="exp-two"><label>Nível<select name="nivel"><option value="iniciante">Iniciante</option><option value="intermediário">Intermediário</option><option value="avançado">Avançado</option></select></label>
+  <label>Data preferida *<input name="data" type="date" required></label></div>
+  <p class="exp-err" role="alert"></p>
+  <button class="btn" value="ok">Enviar pedido</button>
+  <a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="exp-ig">Prefiro mandar DM no Instagram ↗</a>
+ </form>
+ <div class="exp-ok" hidden role="status"><div class="exp-ball" aria-hidden="true"></div><h2>Pedido enviado! 🏐</h2><p>Obrigado! Agora é só confirmar com a gente pelo Instagram.</p><a href="https://ig.me/m/fut.veco" target="_blank" rel="noopener noreferrer" class="btn">Confirmar no Instagram</a><button type="button" class="exp-close link">Fechar</button></div>
+</dialog>
 <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galeria de fotos" hidden><button class="lb-x" aria-label="Fechar">×</button><button class="lb-p" aria-label="Anterior">‹</button><img alt="" decoding="async"><button class="lb-n" aria-label="Próxima">›</button><p class="lb-c" aria-live="polite"></p></div>
 </body></html>

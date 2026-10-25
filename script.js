@@ -202,3 +202,39 @@
     }, { passive: true });
   }
 })();
+
+/* ---------- Aula experimental (demo: salva no armazenamento do navegador) ---------- */
+(function () {
+  'use strict';
+  var dlg = document.getElementById('expDlg');
+  if (!dlg || typeof dlg.showModal !== 'function' || !window.FV) return; // sem suporte: links seguem para o Instagram
+  var form = document.getElementById('expForm'), ok = dlg.querySelector('.exp-ok'), err = dlg.querySelector('.exp-err'), opener = null;
+  var d = new Date(); d.setDate(d.getDate() + 1);
+  function iso(x) { return x.getFullYear() + '-' + ('0' + (x.getMonth() + 1)).slice(-2) + '-' + ('0' + x.getDate()).slice(-2); }
+  document.querySelectorAll('[data-exp]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault(); opener = a;
+      form.reset(); form.hidden = false; ok.hidden = true; err.textContent = '';
+      form.data.min = iso(new Date()); form.data.value = iso(d);
+      dlg.showModal(); form.nome.focus();
+    });
+  });
+  dlg.addEventListener('close', function () { if (opener) opener.focus({ preventScroll: true }); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.querySelector('.exp-close').addEventListener('click', function () { dlg.close(); });
+  form.addEventListener('submit', function (e) {
+    if (!e.submitter || e.submitter.value !== 'ok') return;
+    e.preventDefault();
+    var bad = [];
+    form.querySelectorAll('[aria-invalid]').forEach(function (i) { i.removeAttribute('aria-invalid'); });
+    var nome = form.nome.value.trim(), tel = form.telefone.value.trim(), data = form.data.value;
+    if (nome.length < 2) bad.push(form.nome);
+    if (tel.replace(/\D/g, '').length < 10) bad.push(form.telefone);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) bad.push(form.data);
+    if (bad.length) { bad.forEach(function (i) { i.setAttribute('aria-invalid', 'true'); }); err.textContent = 'Confira nome, WhatsApp (com DDD) e data.'; bad[0].focus(); return; }
+    var nivel = ['iniciante', 'intermediário', 'avançado'].indexOf(form.nivel.value) >= 0 ? form.nivel.value : 'iniciante';
+    window.FV.repo.create('experimentais', { nome: nome.slice(0, 80), telefone: tel.slice(0, 20), nivel: nivel, data: data, status: 'pendente', origem: 'site', obs: 'Pedido pelo site' })
+      .then(function () { form.hidden = true; ok.hidden = false; ok.querySelector('.btn').focus(); })
+      .catch(function () { err.textContent = 'Não foi possível salvar. Chame a gente no Instagram!'; });
+  });
+})();
